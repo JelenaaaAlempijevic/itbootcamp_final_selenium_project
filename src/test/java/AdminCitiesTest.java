@@ -1,4 +1,5 @@
 import com.sun.org.glassfish.gmbal.Description;
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CitiesPage;
@@ -43,6 +44,52 @@ public class AdminCitiesTest extends BaseTest{
         Assert.assertTrue(messagePopUpPage.getTextElementsFromMessagePopUp().getText().contains("Saved successfully"),
                 "The message does not contain 'Saved successfully'.gi");
 
+    }
+
+    @Test(priority = 4)
+    @Description("TC4 - Edit city")
+      public void editCity(){
+        navPage.getAdminButton().click();
+        navPage.getCitiesLink().click();
+        citiesPage.getSearchInput().sendKeys("Jelena Alempijevic's city");
+        citiesPage.waitUntilRowsAppears(1);
+        citiesPage.getEditButtonFromRow(1).click();
+        citiesPage.getInputFieldForCities().sendKeys(Keys.CONTROL + "a");
+        citiesPage.getInputFieldForCities().sendKeys(Keys.BACK_SPACE);
+        citiesPage.getInputFieldForCities().sendKeys("Jelena Alempijevic's city Edited");
+        citiesPage.getSaveButton().click();
+        messagePopUpPage.waitUntilMessagePopUpIsVisible();
+        Assert.assertTrue(messagePopUpPage.getTextElementsFromMessagePopUp().getText().contains("Saved successfully"),
+                "The message does not contain 'Saved successfully'.");
+    }
+
+
+    @Test(priority = 5)
+    @Description("TC5 - Search city")
+      public void searchCity(){
+        navPage.getAdminButton().click();
+        navPage.getCitiesLink().click();
+        citiesPage.getSearchInput().sendKeys("Jelena Alempijevic's city");
+        citiesPage.waitUntilRowsAppears(1);
+        Assert.assertTrue(citiesPage.getCellByColumnAndRow(1,2).getText().contains("Jelena Alempijevic's city"),
+                "The 'name' column does not contain 'Jelena Alempijevic's city'.");
+    }
+
+    @Test(priority = 6)
+    @Description("TC6 - Delete city")
+       public void deleteCity(){
+        navPage.getAdminButton().click();
+        navPage.getCitiesLink().click();
+        citiesPage.getSearchInput().sendKeys("Jelena Alempijevic's city");
+        citiesPage.waitUntilRowsAppears(1);
+        Assert.assertTrue(citiesPage.getCellByColumnAndRow(1,2).getText().contains("Jelena Alempijevic's city"),
+                "The 'name' column does not contain 'Jelena Alempijevic's city'.");
+        citiesPage.getDeleteButtonFromRow(1).click();
+        citiesPage.waitUntilDeleteItemDialogAppears();
+        citiesPage.getDeleteButton().click();
+        messagePopUpPage.waitUntilMessagePopUpIsVisible();
+        Assert.assertTrue(messagePopUpPage.getTextElementsFromMessagePopUp().getText().contains("Deleted successfully"),
+                "The message does not contain 'Deleted successfully'.");
     }
 
 
