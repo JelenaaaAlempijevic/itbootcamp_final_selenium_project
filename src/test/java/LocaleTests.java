@@ -13,6 +13,7 @@ public class LocaleTests extends BaseTest{
                 "The header of page does not contains 'Página de aterrizaje'.");
     }
 
+
     @Test(priority = 2)
     @Description("TC2 - Set locale to EN")
       public void setLocaleToEN(){
@@ -32,6 +33,7 @@ public class LocaleTests extends BaseTest{
                 "The header of page does not contains '首页'.");
     }
 
+
     @Test(priority = 4)
     @Description("TC4 - Set locale to FR")
     public void setLocaleToFR() {
@@ -40,6 +42,7 @@ public class LocaleTests extends BaseTest{
         Assert.assertTrue(landingPage.getHeaderOfPage().getText().contains("Page d'atterrissage"),
                 "The header of page does not contains 'Page d'atterrissage'.");
     }
+
 
     @Test(priority = 5)
     @Description("TC5 - Set locale to UA")

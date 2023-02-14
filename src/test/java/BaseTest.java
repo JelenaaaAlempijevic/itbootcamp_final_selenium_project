@@ -35,7 +35,6 @@ public abstract class BaseTest {
         citiesPage = new CitiesPage(driver, wait);
         messagePopUpPage = new MessagePopUpPage(driver, wait);
         landingPage = new LandingPage(driver, wait);
-
     }
 
 
