@@ -39,11 +39,11 @@ public class NavPage extends BasePage {
         return driver.findElement(By.className("btnAdminUsers"));
     }
 
-    public WebElement getSignUpLink(){
+    public WebElement getSignUpButton(){
         return driver.findElement(By.xpath("//div[@class='v-toolbar__items']/a[4]"));
     }
 
-    public WebElement getLoginLink(){
+    public WebElement getLoginButton(){
         return driver.findElement(By.xpath("//div[@class='v-toolbar__items']/a[3]"));
     }
 
@@ -57,26 +57,27 @@ public class NavPage extends BasePage {
 
     public WebElement getEnglishLanguageButton(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@role='menu']")));
-        return driver.findElement(By.id("list-item-327"));
+        return driver.findElement(By.id("list-item-80"));
     }
 
     public WebElement getSpanishLanguageButton(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@role='menu']")));
-        return driver.findElement(By.id("list-item-329"));
+        return driver.findElement(By.id("list-item-82"));
     }
 
     public WebElement getFrenchLanguageButton(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@role='menu']")));
-        return driver.findElement(By.id("list-item-331"));
+        return driver.findElement(By.id("list-item-84"));
     }
 
     public WebElement getChineseLanguageButton(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@role='menu']")));
-        return driver.findElement(By.id("list-item-333"));
+        return driver.findElement(By.id("list-item-86"));
     }
 
     public WebElement getUkrainianLanguageButton(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@role='menu']")));
-        return driver.findElement(By.id("list-item-335"));
+        return driver.findElement(By.id("list-item-88"));
     }
+
 }

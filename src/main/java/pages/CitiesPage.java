@@ -26,7 +26,7 @@ public class CitiesPage extends  BasePage{
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-dialog--active")));
     }
 
-    public WebElement getSaveNewEditDialogButton(){
+    public WebElement getSaveButton(){
         return driver.findElement(By.className("btnSave"));
     }
 
@@ -34,11 +34,11 @@ public class CitiesPage extends  BasePage{
         return driver.findElement(By.className("btnCancel"));
     }
 
-    public WebElement getDeleteButtonFromDeleteDialog(){
+    public WebElement getDeleteButton(){
         return driver.findElement(By.xpath("//*[contains(@class, 'v-dialog--active')]//button[contains(@class, 'red--text')]"));
     }
 
-    public WebElement getCencelButtonFromDeleteDialog(){
+    public WebElement getCancelButtonFromDeleteDialog(){
         return driver.findElement(By.xpath("//*[contains(@class, 'v-dialog--active')]//button[contains(@class, 'green--text')]"));
     }
 
@@ -56,5 +56,9 @@ public class CitiesPage extends  BasePage{
 
     public WebElement getDeleteButtonFromRow(int row){
         return driver.findElement(By.xpath("//tr["+row+"]//button[@id='delete']"));
+    }
+
+    public WebElement getInputFieldForCities(){
+        return driver.findElement(By.id("name"));
     }
 }
