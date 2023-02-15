@@ -11,12 +11,20 @@ public class MessagePopUpPage extends BasePage{
         super(driver, wait);
     }
 
-    public void waitUntilMessagePopUpIsVisible(){
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-snack__content")));
+    public void waitUntilErrorMessagePopUpIsVisible(){
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='status']")));
     }
 
-    public WebElement getTextElementsFromMessagePopUp(){
-        return driver.findElement(By.xpath("//*[@class='v-snack__content']//li"));
+    public void waitUntilSuccessMessagePopUpIsVisible(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
+    }
+
+    public WebElement getErrorMessageTextElement(){
+        return driver.findElement(By.xpath("//div[contains(@class, 'error')]/div[@class='v-snack__content']"));
+    }
+
+    public WebElement getSuccessMessageTextElement(){
+        return driver.findElement(By.xpath("//div[contains(@class, 'success')]/div[@class='v-snack__content']"));
     }
 
     public WebElement getCloseButton(){
@@ -29,10 +37,10 @@ public class MessagePopUpPage extends BasePage{
     }
 
     public WebElement getVerifyYourAccountHeader(){
-        return driver.findElement(By.className("v-card_title"));
+        return driver.findElement(By.className("v-card__title"));
     }
 
     public WebElement getVerifyYourAccountCloseButton(){
-        return driver.findElement(By.xpath("//*[contains(@class, 'v-card_actions')]/button"));
+        return driver.findElement(By.xpath("//*[contains(@class, 'v-card__actions')]/button"));
     }
 }
