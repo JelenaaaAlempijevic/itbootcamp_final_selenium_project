@@ -1,5 +1,6 @@
 import com.sun.org.glassfish.gmbal.Description;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CitiesPage;
@@ -9,13 +10,14 @@ public class AdminCitiesTest extends BaseTest{
     @Test(priority = 1)
     @Description("TC1 - Visits the admin cities page and list cities")
     public void visitsTheAdminCitiesPageAndListCities(){
-        navPage.getSignUpButton().click();
+        navPage.getLoginButton().click();
         loginPage.getEmailField().sendKeys("admin@admin.com");
         loginPage.getPasswordField().sendKeys("12345");
         loginPage.getLoginField().click();
+        wait.until(ExpectedConditions.urlContains("/home"));
         navPage.getAdminButton().click();
         navPage.getCitiesLink().click();
-        Assert.assertEquals(driver.getCurrentUrl(),"/admin/cities",
+        Assert.assertEquals(driver.getCurrentUrl(),baseUrl + "/admin/cities",
                 "The page url does not contain '/admin/cities'.");
     }
 
@@ -26,7 +28,7 @@ public class AdminCitiesTest extends BaseTest{
         navPage.getCitiesLink().click();
         citiesPage.getNewItemButton().click();
         citiesPage.waitUntilEditAndNewItemDialogAppears();
-        Assert.assertTrue(citiesPage.getInputFieldForCities().getAttribute("type").contains("text"),
+        Assert.assertEquals(citiesPage.getInputFieldForCities().getAttribute("type"), "text",
                 "The input field for city does not have attribute type 'text'.");
     }
 
@@ -40,9 +42,9 @@ public class AdminCitiesTest extends BaseTest{
         citiesPage.waitUntilEditAndNewItemDialogAppears();
         citiesPage.getInputFieldForCities().sendKeys("Jelena Alempijevic's city");
         citiesPage.getSaveButton().click();
-        messagePopUpPage.waitUntilMessagePopUpIsVisible();
-        Assert.assertTrue(messagePopUpPage.getTextElementsFromMessagePopUp().getText().contains("Saved successfully"),
-                "The message does not contain 'Saved successfully'.gi");
+        messagePopUpPage.waitUntilSuccessMessagePopUpIsVisible();
+        Assert.assertTrue(messagePopUpPage.getSuccessMessageTextElement().getText().contains("Saved successfully"),
+                "The message does not contain 'Saved successfully'.");
 
     }
 
@@ -58,8 +60,8 @@ public class AdminCitiesTest extends BaseTest{
         citiesPage.getInputFieldForCities().sendKeys(Keys.BACK_SPACE);
         citiesPage.getInputFieldForCities().sendKeys("Jelena Alempijevic's city Edited");
         citiesPage.getSaveButton().click();
-        messagePopUpPage.waitUntilMessagePopUpIsVisible();
-        Assert.assertTrue(messagePopUpPage.getTextElementsFromMessagePopUp().getText().contains("Saved successfully"),
+        messagePopUpPage.waitUntilSuccessMessagePopUpIsVisible();
+        Assert.assertTrue(messagePopUpPage.getSuccessMessageTextElement().getText().contains("Saved successfully"),
                 "The message does not contain 'Saved successfully'.");
     }
 
@@ -87,8 +89,8 @@ public class AdminCitiesTest extends BaseTest{
         citiesPage.getDeleteButtonFromRow(1).click();
         citiesPage.waitUntilDeleteItemDialogAppears();
         citiesPage.getDeleteButton().click();
-        messagePopUpPage.waitUntilMessagePopUpIsVisible();
-        Assert.assertTrue(messagePopUpPage.getTextElementsFromMessagePopUp().getText().contains("Deleted successfully"),
+        messagePopUpPage.waitUntilSuccessMessagePopUpIsVisible();
+        Assert.assertTrue(messagePopUpPage.getSuccessMessageTextElement().getText().contains("Deleted successfully"),
                 "The message does not contain 'Deleted successfully'.");
     }
 

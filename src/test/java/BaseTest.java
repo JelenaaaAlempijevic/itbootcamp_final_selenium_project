@@ -28,7 +28,7 @@ public abstract class BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         loginPage = new LoginPage(driver,wait);
         navPage = new NavPage (driver, wait);
         signupPage = new SignupPage(driver, wait);

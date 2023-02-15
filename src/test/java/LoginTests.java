@@ -30,11 +30,11 @@ public class LoginTests extends  BaseTest{
     @Description("TC3 - Displays errors when user does not exist")
     public void displaysErrorsWhenUsersDoesNotExist(){
         navPage.getLoginButton().click();
-        loginPage.getEmailField().sendKeys("user111@gmail.com");
+        loginPage.getEmailField().sendKeys("non-exciting-user111@gmail.com");
         loginPage.getPasswordField().sendKeys("123456789");
         loginPage.getLoginField().click();
-        messagePopUpPage.waitUntilMessagePopUpIsVisible();
-        Assert.assertTrue(messagePopUpPage.getTextElementsFromMessagePopUp().getText().contains("User does not exist."),
+        messagePopUpPage.waitUntilErrorMessagePopUpIsVisible();
+        Assert.assertTrue(messagePopUpPage.getErrorMessageTextElement().getText().contains("User does not exist"),
                 "The messages does not contain 'User does not exist'.");
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"),
                 "The url of page does not contain 'login'.");
@@ -47,8 +47,8 @@ public class LoginTests extends  BaseTest{
         loginPage.getEmailField().sendKeys("admin@admin.com");
         loginPage.getPasswordField().sendKeys("password123");
         loginPage.getLoginField().click();
-        messagePopUpPage.waitUntilMessagePopUpIsVisible();
-        Assert.assertTrue(messagePopUpPage.getTextElementsFromMessagePopUp().getText().contains("Wrong password."),
+        messagePopUpPage.waitUntilErrorMessagePopUpIsVisible();
+        Assert.assertTrue(messagePopUpPage.getErrorMessageTextElement().getText().contains("Wrong password"),
                 "The messages does not contain 'Wrong password'.");
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"),
                 "The url of page does not contain 'login'.");
